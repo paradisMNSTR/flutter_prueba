@@ -16,26 +16,15 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<Repos> repositorios=<Repos>[];
-  get_data(){
-    repositorios.clear();
-    api_class().retriveInfo(widget.ACCESS_TOKEN,'REPOS').then((value){
-      for(var notejson in value as List){
-        setState(() {
-          repositorios.add(Repos.fromJson(notejson));
-        });
-      }
-    });
-  }
+
   @override
   void initState() {
-    get_data();
-    //Bloc_Retriver(api_class()).add(LoadedEvento(ACCESS_TOKEN: widget.ACCESS_TOKEN));
+    Bloc_Retriver(api_class()).add(LoadedEvento(ACCESS_TOKEN: widget.ACCESS_TOKEN));
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         ),
       drawer: Drawer(
@@ -61,43 +50,31 @@ class _DashboardState extends State<Dashboard> {
           ],
         ),
       ),
-      body:repositorios.isNotEmpty?
-          Container(
-            child: ListView.builder(
-                itemCount: repositorios.length,
-                itemBuilder: (BuildContext context , int index){
-                  return ListTile(
-                    title: Text(repositorios[index].name!),
-                    subtitle: Text(repositorios[index].description!),
-                  );
-                }
-            ),
-          ):Center(
-        child: CircularProgressIndicator(),
-      ),
-      /*BlocBuilder<Bloc_Retriver,States>(
+      body: BlocBuilder<Bloc_Retriver,States>(
           builder: (context,state){
-            print(state.toString());
             if(state is LoaderStates){
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            }else if(state is LoadedStates){
+            }
+            if(state is LoadedStates){
+              print(state.repo.length);
               return ListView.builder(
                   itemCount: state.repo.length,
                   itemBuilder: (BuildContext context,int index){
                     return ListTile(
                       title: Text(state.repo[index].name!),
-                    );  
+                      subtitle: Text(state.repo[index].description!),
+                    );
                   }
               );
             }
-            return Container();
+            return Container(color: Colors.black,);
           }
-      ),*/
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          get_data();
+          Bloc_Retriver(api_class()).add(LoadedEvento(ACCESS_TOKEN: widget.ACCESS_TOKEN));
         },
         child: Icon(Icons.refresh),
       ),

@@ -1,4 +1,4 @@
-class User {
+class User {//Clase de atributos de Usuario
   String? login;
   int? id;
   String? nodeId;
@@ -99,7 +99,7 @@ class User {
   }
 }
 
-class Repos {
+class Repos {//Clase de atributos de repositorios
   int? id;
   String? nodeId;
   String? name;

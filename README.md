@@ -2,15 +2,17 @@
 
 Amigo doctor prueba
 
-## Getting Started
+Requerimientos para compilar:
+*Poner como el minsdkVersion 34
+*Cambiar en lib/Auth/authentication.dart los parametros client_id ,
+client secret,y el URL del callback que se gnero al dar de alta la aplicacion y cambiarlas por las credenciales propias
 
-This project is a starting point for a Flutter application.
+La aplicación se conforma: 
+La pantalla principal:{Navegación}
+WebView:{Autencación de OAUTH}
+Dashboard:{Peticiones de Usuario,Y Repositorios}
 
-A few resources to get you started if this is your first Flutter project:
+Para el manejo de autenticacion de OAuth de GitHub, se ejecutara una WebView, para evitar problemas con la
+autenticacion, registrar de forma correcta las credenciales de GitHub.
+Y hay un tiempo muerto visualizando una pagina que no responde pero es aquella que retorna el code.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

@@ -5,10 +5,11 @@ import 'package:flutter_prueba/Endpoints/endpoints.dart';
 import 'Auth/authentication.dart';
 
 void main() {
-  runApp(BlocProvider(
-    create: (context)=>Bloc_Retriver(api_class()),
-    child: MyApp(),
-  ));
+  runApp(
+      //BlocProvider(
+    //create: (context)=>Bloc_Retriver(api_class()),
+    MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Test',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -37,56 +38,16 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.network('https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'),
+            Image.network('https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'),//Logo de GitHUb
             ElevatedButton(
               onPressed: ()async{
-                //signInWithGitHub(context);
-                //await authorize(context);
-                await authorization(context);
+                await authorization(context);//Funcion para abrir la ventana Web, para la utenticación OAuth
               },
               child: Text('Iniciar sesión con GitHub'),
             )
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-
-/*class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.network('https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'),
-            ElevatedButton(
-              onPressed: ()async{
-                //signInWithGitHub(context);
-                //await authorize(context);
-                await authorization(context);
-              },
-              child: Text('Iniciar sesión con GitHub'),
-            )
-          ],
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}*/
+}
